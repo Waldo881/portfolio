@@ -7,7 +7,7 @@
 :root {
     --color-bg: #f5f0e8;
     --color-ink: #1c1c1a;
-    --color-green: #0b4921;
+    --color-green: #105428;
     --color-wood: #8b6343;
     --color-cream: #d9c6a4;
     --color-muted: #6b6b67;
@@ -186,4 +186,46 @@ hr {
     border: none;
     border-top: 1px solid var(--color-border);
     margin: 0;
+}
+
+#projects {
+    padding: 5rem 3 rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.project-card {
+    min-height: 300px;
+    border-radius: 12px;
+    border: 1px solid var(--color-green);
+    background-color: var(--color-green);
+    padding: 2rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.project-title-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.project-name {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    color: var(--color-cream);
+}
+
+.project-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: rgba(255, 255,255, 0.6);
 }
