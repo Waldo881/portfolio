@@ -33,7 +33,7 @@ nav{
     align-items: center;
     padding: 1.5rem 3rem;
     background-color: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 2.5px solid var(--color-green);
 }
 
 nav a {
@@ -104,7 +104,7 @@ p {
 .meta-value {
     font-size: 1rem;
     font-weight: 500;
-    color: var(--color-wood);
+    color: var(--color-green);
 }
 
 .accent-line {
@@ -189,7 +189,7 @@ hr {
 }
 
 #projects {
-    padding: 5rem 3 rem;
+    padding: 5rem 3rem;
 }
 
 .projects-grid {
@@ -199,28 +199,53 @@ hr {
 }
 
 .project-card {
-    min-height: 300px;
+    min-height: 350px;
     border-radius: 12px;
     border: 1px solid var(--color-green);
     background-color: var(--color-green);
     padding: 2rem;
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
     cursor: pointer;
+    position: relative;
+    transition: all 0.6s ease;
+}
+
+.project-card:hover {
+    z-index: 10;
+}
+
+.project-card:hover .project-details {
+    opacity: 1;
+    visibility: visible;
 }
 
 .project-title-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+    text-align: center;
+}
+
+.project-card:hover .project-title-wrap {
+    top: 1.5rem;
+    left: auto;
+    right: 1.5rem;
+    transform: translate(0, 0);
+    text-align: right;
 }
 
 .project-name {
     font-family: var(--font-serif);
     font-size: 3rem;
     color: var(--color-cream);
+    transition: font-size 0.6s ease;
+}
+
+.project-card:hover .project-name {
+    font-size: 1.4rem;
 }
 
 .project-category {
@@ -228,6 +253,47 @@ hr {
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     color: rgba(255, 255,255, 0.6);
+}
+
+.project-details {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.project-description {
+    font-size: 0.95rem;
+    color: rgba(255, 255,255, 0.7);
+    line-height: 1.6;
+    margin-top: 3rem;
+}
+
+.project-tech {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tech-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 99px;
+    border: 1px solid rgba(255, 255,255, 0.3);
+    color: rgba(255, 255,255, 0.7);
+}
+
+.project-link {
+    font-size: 0.85rem;
+    color: var(--color-cream);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--color-cream);
+    padding-bottom: 0.1rem;
+    width: fit-content;
 }
 
 #bg-canvas {
@@ -238,3 +304,6 @@ hr {
     height: 100%;
     z-index: -1;
 }
+
+
+
