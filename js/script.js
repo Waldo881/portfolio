@@ -72,4 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollBtn.addEventListener('click', () => {
         window.scrollTo({top: 0, behavior: 'smooth'});
     });
+
+    const eduCard = document.getElementById('eduCard');
+    eduCard.addEventListener('click', () => {
+    eduCard.classList.toggle('open');
+});
 })
