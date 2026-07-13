@@ -59,6 +59,15 @@ drawTopo();
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const accentLine = document.querySelector('.accent-line');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        accentLine.style.width = scrollPercent + '%';
+    });
+
     const pulsingCards = document.querySelectorAll('.edu-card');
     pulsingCards.forEach(card => {
         card.style.animationDelay = '0s';

@@ -37,7 +37,7 @@ nav{
     align-items: center;
     padding: 1.5rem 3rem;
     background-color: var(--color-bg);
-    border-bottom: 2.5px solid var(--color-green);
+    border-bottom: 1.5px solid var(--color-border);
 }
 
 nav a {
@@ -64,6 +64,30 @@ section {
     position: relative;
     padding: 6rem 3rem 5rem 3rem;
     max-width: 900px;
+}
+
+.hero-bio {
+    font-size: 1rem;
+    color: var(--color-muted);
+    margin-top: 0.5rem;
+    max-width: 480px;
+}
+
+.cta-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.8rem 1.8rem;
+    background-color: var(--color-green);
+    color: var(--color-cream);
+    text-decoration: none;
+    border-radius: 99px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.cta-btn:hover {
+    opacity: 0.85;
 }
 
 h1 {
@@ -123,12 +147,15 @@ h3 {
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 120px;
+    width: 0%;
     height: 4px;
-    background-color: var(--color-green);
+    background-color: #c4a46b;
+    transition: width 0.1s ease;
+    z-index: 99;
 }
 
 h2 {
+    text-align: center;
     font-family: var(--font-serif);
     font-size: 4rem;
     color: var(--color-ink);
@@ -493,27 +520,43 @@ h2 {
 
 .contact-list {
     list-style: none;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 2rem;
 }
 
 .contact-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
-    font-size: 1rem;
-    color: var(--color-ink);
+    padding: 2rem;
+    border: transparent;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.contact-item:hover {
+    border-color: var(--color-green);
 }
 
 .contact-item i {
-    font-size: 1.2rem;
+    font-size: 3rem;
     color: var(--color-green);
-    width: 24px;
 }
 
-.contact-item span {
+.contact-item span, .contact-item a {
+    font-size: 1rem;
     color: var(--color-muted);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.contact-item a:hover {
+    color: var(--color-green);
 }
 
