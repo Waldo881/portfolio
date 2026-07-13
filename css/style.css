@@ -186,11 +186,6 @@ h2 {
     flex: 1;
 }
 
-hr {
-    border: none;
-    border-top: 0px solid var(--color-border);
-    margin: 0;
-}
 
 #projects {
     padding: 5rem 3rem;
@@ -479,5 +474,15 @@ hr {
     0% {border-color: var(--color-border);}
     50% {border-color: var(--color-green);}
     100% {border-color: var(--color-border);}
+}
+
+#experience {
+    padding: 5rem 0.2rem;
+}
+
+.exp-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 

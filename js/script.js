@@ -76,5 +76,81 @@ document.addEventListener('DOMContentLoaded', () => {
     const eduCard = document.getElementById('eduCard');
     eduCard.addEventListener('click', () => {
     eduCard.classList.toggle('open');
+    });
+
+    const expCards = document.querySelectorAll('.exp-cards .edu-card');
+    expCards.forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('open');
+        });
+    });
+
+    const expStops = document.querySelectorAll('.exp-stop');
+    const expDetail = document.getElementById('expDetail');
+
+    const expData = {
+        expStop1: {
+            date: 'April 2026 — Present',
+            company: 'Surf & Turf Coffee Shop',
+            role: 'Manager',
+            bullets: [
+                'Managing daily operations of the coffee shop',
+                'Leading and supervising staff',
+                'Stock management and ordering',
+                'Ensuring quality standards are maintained'
+        ]
+    },
+    expStop2: {
+        date: 'September 2025 — April 2026',
+        company: 'Surf & Turf Coffee Shop',
+        role: 'Barista & Barista Trainer',
+        bullets: [
+            'Delivered high-quality customer service in a fast-paced environment',
+            'Prepared specialty beverages and ensured consistent quality',
+            'Trained new baristas on coffee preparation and customer service',
+            'Supervised daily operations and assisted with stock management'
+        ]
+    },
+    expStop3: {
+        date: 'February 2025 — September 2025',
+        company: 'Hooked Coffee Co.',
+        role: 'Barista',
+        bullets: [
+            'Prepared coffee and beverages according to store standards',
+            'Provided friendly and efficient customer service',
+            'Handled customer orders and point-of-sale transactions',
+            'Maintained cleanliness and hygiene of the workspace'
+        ]
+    },
+    expStop4: {
+        date: 'March 2022 — July 2023',
+        company: 'Slouw Cafe',
+        role: 'Barista & Waiter',
+        bullets: [
+            'Prepared coffee and beverages while assisting customers',
+            'Took food and drink orders and provided table service',
+            'Handled POS transactions and basic cash management',
+            'Worked effectively as part of a team in a fast-paced environment'
+        ]
+    }
+};
+
+    expStops.forEach(stop => {
+        stop.addEventListener('click', () => {
+            expStops.forEach(s => s.classList.remove('active'));
+            stop.classList.add('active');
+
+            const data = expData[stop.id];
+            expDetail.innerHTML = `
+                <span class="exp-date">${data.date}</span>
+                <h3 class="exp-place">${data.company}</h3>
+                <p class="exp-role">${data.role}</p>
+                <ul class="exp-bullets">
+                ${data.bullets.map(b => `<li>${b}</li>`).join('')}
+                </ul>
+            `;
+        });
+    });
 });
-})
+
+
