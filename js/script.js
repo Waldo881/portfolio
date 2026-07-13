@@ -59,6 +59,11 @@ drawTopo();
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const pulsingCards = document.querySelectorAll('.edu-card');
+    pulsingCards.forEach(card => {
+        card.style.animationDelay = '0s';
+    });
+
     const scrollBtn = document.getElementById('scrollTop');
 
     window.addEventListener('scroll', () => {
