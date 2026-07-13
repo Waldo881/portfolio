@@ -1,7 +1,8 @@
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 
-const dpr = window.devicePixelRatio || 1;
+//const dpr = window.devicePixelRatio || 1;
+const dpr = Math.min(window.devicePixelRatio || 1, 2); // Limit to a maximum of 2 for performance
 const width = window.innerWidth;
 const height = window.innerHeight;
 
@@ -12,8 +13,14 @@ ctx.scale(dpr, dpr);
 const simplex = new SimplexNoise();
 let time = 0;
 
-const cols = 120;
-const rows = 80;
+const cols = 200;
+const rows = 130;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    ctx.scale(dpr, dpr);
+});
 
 function drawTopo() {
     ctx.clearRect(0, 0, width, height);
@@ -56,6 +63,8 @@ function drawTopo() {
 }
 
 drawTopo();
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
 

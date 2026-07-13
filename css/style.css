@@ -359,17 +359,18 @@ h2 {
     z-index: 99;
 }
 
-@keyframes bounceIn {
-    0% { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-    60% { transform: translateX(-50%) translateY(10px); opacity: 1; }
-    80% { transform: translateX(-50%) translateY(-5px); }
-    100% { transform: translateX(-50%) translateY(0); }
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
 }
 
 .scroll-top.visible {
     opacity: 1;
     pointer-events: all;
-    animation: bounceIn 0.6s ease forwards;
+    animation: shake 0.6s ease forwards;
 }
 
 #education {
@@ -385,15 +386,16 @@ h2 {
     cursor: pointer;
     width: 100%;
     transition: border-color 0.4s ease;
-    animation: pulse 2s ease-in-out infinite;
+    animation: none;
 }
 
 .edu-card.open {
-    animation: none;
+    animation: none !important;
     border-color: var(--color-green)
 }
 
-.edu-card:hover {
+.edu-card:hover, .exp-card .edu-card:hover {
+    animation: shake 0.4s ease infinite;
     border-color: var(--color-green);
 }
 
