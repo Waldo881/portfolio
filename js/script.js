@@ -65,8 +65,19 @@ function drawTopo() {
 drawTopo();
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
+
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {threshold: 0.15});
+
+    reveals.forEach(e1 => revealObserver.observe(e1));
 
     const themeToggle = document.getElementById('themeToggle');
     const icon = themeToggle.querySelector('i');
@@ -134,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Stock management and ordering',
                 'Ensuring quality standards are maintained'
         ]
-    },
+        },
     expStop2: {
         date: 'September 2025 — April 2026',
         company: 'Surf & Turf Coffee Shop',
@@ -145,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Trained new baristas on coffee preparation and customer service',
             'Supervised daily operations and assisted with stock management'
         ]
-    },
+        },
     expStop3: {
         date: 'February 2025 — September 2025',
         company: 'Hooked Coffee Co.',
@@ -156,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Handled customer orders and point-of-sale transactions',
             'Maintained cleanliness and hygiene of the workspace'
         ]
-    },
+        },
     expStop4: {
         date: 'March 2022 — July 2023',
         company: 'Slouw Cafe',
@@ -167,8 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'Handled POS transactions and basic cash management',
             'Worked effectively as part of a team in a fast-paced environment'
         ]
-    }
-};
+        }
+    };
 
     expStops.forEach(stop => {
         stop.addEventListener('click', () => {
