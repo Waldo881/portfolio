@@ -19,6 +19,13 @@
     --font-sans: 'DM Sans', sans-serif;
     --font-lato: 'Lato', sans-serif;
 
+    body.dark {
+        --color-bg: #1c1c1a;
+        --color-ink: #f5f0e8;
+        --color-border: rgba(245, 240, 232, 0.1);
+        --color-surface: #2c2c2a;
+    }
+
 }
 
 html {
@@ -52,18 +59,51 @@ nav ul {
     gap: 2rem;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--color-ink);
+    padding: 0.1rem;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--color-green);
+}
+
 section {
-    padding: 0;
+    padding: 4rem 3rem;
 }   
 
 #about {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     position: relative;
     padding: 6rem 3rem 5rem 3rem;
-    max-width: 900px;
+}
+
+.about-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+}
+
+.about-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .hero-bio {
@@ -84,6 +124,7 @@ section {
     font-size: 0.9rem;
     font-weight: 500;
     transition: opacity 0.3s ease;
+    max-width: fit-content;
 }
 
 .cta-btn:hover {
@@ -119,15 +160,31 @@ h3 {
 
 .meta {
     display: flex;
-    gap: 10rem;
-    margin-top: 3rem; 
-    font-family: var(--font-lato); 
+    flex-direction: column;
+    gap: 1.5rem;
+    font-family: var(--font-lato);
 }
 
 .meta-item {
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.5rem 2rem;
+    border: transparent;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 160px;
+    transition: border-color 0.3s ease;
+}
+
+.meta-item:hover {
+    border-color: var(--color-green);
+}
+
+.meta-item i {
+    font-size: 1.4rem;
+    color: var(--color-green);
 }
 
 .meta-label {
@@ -152,6 +209,15 @@ h3 {
     background-color: #c4a46b;
     transition: width 0.1s ease;
     z-index: 99;
+}
+
+.section-forest{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
 }
 
 h2 {
@@ -183,17 +249,24 @@ h2 {
 }
 
 #skills {
+    position: relative;
+    min-height: 100vh;
     padding: 5rem 3rem;
     margin: 0 auto;
 }
 
 .skill-card {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-right: 4px solid var(--color-muted);
+    background-color: transparent;
+    border: 2px solid var(--color-border);
+    border-right: 4px solid var(--color-green);
     border-radius: 8px;
     padding: 1.5rem;
     min-height: 520px;
+}
+
+.skill-card:hover {
+    border-color: var(--color-green);
+    transition: border-color 0.3s ease;
 }
 
 .skill-card ul li {
@@ -223,7 +296,9 @@ h2 {
 
 
 #projects {
-    padding: 5rem 3rem;
+    position: relative;
+    min-height: 100vh;
+    padding: 5rem 3rem 320px 3rem  ;
 }
 
 .projects-grid {
@@ -247,6 +322,7 @@ h2 {
 
 .project-card:hover {
     z-index: 10;
+    animation: shake 0.6s ease forwards;
 }
 
 .project-card:hover .project-details {
@@ -374,6 +450,7 @@ h2 {
 }
 
 #education {
+    min-height: 100vh;
     padding: 5rem 3rem;
 }
 
@@ -435,6 +512,44 @@ h2 {
     display: flex;
     align-items: center;
     width: 100%;
+}
+
+.edu-extras {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4rem;
+    padding: 2rem 0;
+}
+
+.edu-quote {
+    max-width: 400px;
+}
+
+.edu-quote p {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--color-ink);
+}
+
+#eduCard.open ~ .edu-extras {
+    display: none;
+}
+
+.edu quote cite {
+    display:block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    font-style: normal;
+}
+
+.edu-forest {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 9rem;
 }
 
 .edu-expanded {
@@ -507,6 +622,7 @@ h2 {
 }
 
 #experience {
+    min-height: 100vh;
     padding: 5rem 0.2rem;
 }
 

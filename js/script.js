@@ -22,6 +22,29 @@ window.addEventListener('resize', () => {
     ctx.scale(dpr, dpr);
 });
 
+const sectionColors = {
+        'about': 'rgba(45, 90, 61, ',
+        'skills': 'rgba(139, 99, 67, ',
+        'projects': 'rgba(28, 28, 26, ',
+        'education': 'rgba(90, 110, 90, ',
+        'experience': 'rgba(139, 90, 60, ',
+        'contact': 'rgba(20, 60, 35, '
+    };
+
+    let currentColor = 'rgba(45, 90, 61, ';
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                currentColor = sectionColors[entry.target.id] || 'rgba(45, 90, 61, ';
+            }
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('section[id]').forEach(section => {
+        sectionObserver.observe(section);
+    });
+
 function drawTopo() {
     ctx.clearRect(0, 0, width, height);
 
@@ -41,7 +64,7 @@ function drawTopo() {
 
    contours.forEach((contour, i) => {
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(45, 90, 61, ${0.04 + i * 0.015})`;
+        ctx.strokeStyle = `${currentColor}${0.08 + i * 0.025})`;
         ctx.lineWidth = 1.8;
 
         contour.coordinates.forEach(polygon => {
@@ -67,6 +90,18 @@ drawTopo();
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const themeToggle = document.getElementById('themeToggle');
+    const icon = themeToggle.querySelector('i');
+
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        if(document.body.classList.contains('dark')) {
+            icon.className = 'fa-solid fa-sun';
+        } else {
+            icon.className = 'fa-solid fa-moon';
+        }
+    });
 
     const accentLine = document.querySelector('.accent-line');
 
