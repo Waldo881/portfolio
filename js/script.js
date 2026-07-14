@@ -3,12 +3,6 @@ const ctx = canvas.getContext('2d');
 
 //const dpr = window.devicePixelRatio || 1;
 const dpr = Math.min(window.devicePixelRatio || 1, 2); // Limit to a maximum of 2 for performance
-const width = window.innerWidth;
-const height = window.innerHeight;
-
-canvas.width = width * dpr;
-canvas.height = height * dpr;
-ctx.scale(dpr, dpr);
 
 const simplex = new SimplexNoise();
 let time = 0;
@@ -16,19 +10,27 @@ let time = 0;
 const cols = 200;
 const rows = 130;
 
-window.addEventListener('resize', () => {
+function resizeCanvas() {
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
-    ctx.scale(dpr, dpr);
-});
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
 
-window.addEventListener('focus', () => {
-    canvas.width = window.innerWidth * dpr;
-    canvas.height = window.innerHeight * dpr;
+resizeCanvas();
+
+window.addEventListener('resize', resizeCanvas);
+
+document.addEventListener('visibilitychange', () => {
+    if(!document.hidden) {
+        resizeCanvas();
+    }
 });
 
 function drawTopo() {
-    ctx.clearRect(0, 0, width, height);
+    const w = canvas.width/dpr;
+    const h = canvas.height/dpr;
+
+    ctx.clearRect(0, 0, w, h);
 
     const values = new Array(cols * rows);
     for(let y = 0; y < rows; y++) {
@@ -41,12 +43,12 @@ function drawTopo() {
         .size([cols, rows])
         .thresholds(d3.range(-1, 1, 0.2))(values); 
     
-    const scaleX = width / cols;
-    const scaleY = height / rows;
+    const scaleX = w / cols;
+    const scaleY = h / rows;
 
    contours.forEach((contour, i) => {
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(45, 90, 61, ${0.08 + i * 0.025})`;;
+        ctx.strokeStyle = `rgba(45, 90, 61, ${0.04 + i * 0.012})`;
         ctx.lineWidth = 1.8;
 
         contour.coordinates.forEach(polygon => {
