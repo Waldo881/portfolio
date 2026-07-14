@@ -22,6 +22,11 @@ window.addEventListener('resize', () => {
     ctx.scale(dpr, dpr);
 });
 
+window.addEventListener('focus', () => {
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+});
+
 function drawTopo() {
     ctx.clearRect(0, 0, width, height);
 
@@ -63,7 +68,6 @@ function drawTopo() {
 }
 
 drawTopo();
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
